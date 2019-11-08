@@ -4,12 +4,22 @@ sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get update
 
+# Install nvidia card
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt update
+sudo apt install nvidia-driver-430 nvidia-setting
 
 # Change hostname
 sudo hostnamectl set-hostname T1FT
 
+# Python
+sudo apt-get install python python3
+
 # Software used to use nslookup and a lot of services network
 sudo apt-get install net-tools
+
+# Install Tweak - manage theme
+sudo apt install gnome-tweaks
 
 # Intall Ibus-Unikey
 sudo add-apt-repository ppa:ubuntu-vn/ppa
@@ -44,6 +54,9 @@ sudo dpkg –add-architecture i386
 sudo apt-get update
 sudo apt-get install gns3-iou
 
+# Install Rar and Unrar
+sudo apt-get install rar unrar
+
 # Install Curl
 sudo apt-get install curl
 
@@ -55,3 +68,13 @@ sudo apt-get install terminator
 
 # Install John the Ripper
 sudo apt-get -y install john
+
+# Install Super Productivity - manage projects
+sudo snap install superproductivity
+
+# Install Wallch - change Wallpaper follow time
+sudo apt-get install wallch
+
+# Install Nixnote2
+sudo add-apt-repository ppa:nixnote/nixnote2-daily
+sudo apt-get install nixnote2 -y
