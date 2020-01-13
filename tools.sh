@@ -24,3 +24,8 @@ go install
 git clone https://github.com/gbrindisi/xsssniper.git
 ## Using
 # python xsssniper.py -u 'YOUR_WEBSITE_TARGET' --crawl --forms
+
+
+################## Brutespray ##################
+# Brute force all ports that website is using
+sudo apt-get install brutespray
