@@ -29,3 +29,16 @@ git clone https://github.com/gbrindisi/xsssniper.git
 ################## Brutespray ##################
 # Brute force all ports that website is using
 sudo apt-get install brutespray
+
+
+################## Grabber ##################
+# Detect many security vulnerabilities in web applications.
+# It performs scans and tells where the vulnerability exists. It can detect the following vulnerabilities:
+  # Cross site scripting
+  # SQL injection
+  # Ajax testing
+  # File inclusion
+  # JS source code analyzer
+  # Backup file check
+git clone https://github.com/neuroo/grabber.git
+
