@@ -89,3 +89,10 @@ sudo apt-get install nixnote2 -y
 sudo apt-get install -y default-jdk
 sudo apt-get install -y default-jre
 ## Downloads Burpsuite and executes bash shell file
+
+# Save battery
+# Install tlp and powertop
+sudo apt-get install -y tlp powertop
+sudo systemctl enable tlp
+sudo systemctl start tlp
+sudo systemctl enable tlp-sleep
