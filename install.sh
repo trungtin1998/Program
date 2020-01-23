@@ -84,3 +84,8 @@ sudo apt-get install wallch
 # Install Nixnote2 - Application is same as Microsoft One Note - Evernote on Linux  
 sudo add-apt-repository ppa:nixnote/nixnote2-daily
 sudo apt-get install nixnote2 -y
+
+# Install JAVA
+sudo apt-get install -y default-jdk
+sudo apt-get install -y default-jre
+## Downloads Burpsuite and executes bash shell file
