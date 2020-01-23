@@ -15,6 +15,9 @@ sudo hostnamectl set-hostname T1FT
 # Python
 sudo apt-get install python python3
 
+# Pip
+sudo apt-get install pip pip3
+
 # Software used to use nslookup and a lot of services network
 sudo apt-get install net-tools
 
@@ -25,6 +28,9 @@ sudo apt install gnome-tweaks
 sudo add-apt-repository ppa:ubuntu-vn/ppa
 sudo apt-get update
 ibus restart
+
+# Install Vim
+sudo apt-get install vim
 
 # Install Sublime text 3
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -66,7 +72,7 @@ sudo apt-get install valgrind
 # Install Multi Terminal - Can devide screen into some parts
 sudo apt-get install terminator
 
-# Install John the Ripper
+# Install John the Ripper - Crack password
 sudo apt-get -y install john
 
 # Install Super Productivity - manage projects
@@ -75,6 +81,6 @@ sudo snap install superproductivity
 # Install Wallch - change Wallpaper follow time
 sudo apt-get install wallch
 
-# Install Nixnote2
+# Install Nixnote2 - Application is same as Microsoft One Note - Evernote on Linux  
 sudo add-apt-repository ppa:nixnote/nixnote2-daily
 sudo apt-get install nixnote2 -y
