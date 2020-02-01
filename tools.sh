@@ -1,4 +1,4 @@
-# Make GIT directory
+# Create GIT directory
 cd ~
 mkdir GIT
 cd GIT
