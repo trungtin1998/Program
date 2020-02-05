@@ -12,17 +12,18 @@ sudo apt install nvidia-driver-430 nvidia-setting
 # Change hostname
 sudo hostnamectl set-hostname T1FT
 
+# Install GNOME Tweak - Change background and lockscreen
+sudo add-apt-repository universe
+sudo apt-get install gnome-tweak-tool
+
 # Python
 sudo apt-get install python python3
 
 # Pip
-sudo apt-get install pip pip3
+sudo apt-get install python-pip python-pip3
 
 # Software used to use nslookup and a lot of services network
 sudo apt-get install net-tools
-
-# Install Tweak - manage theme
-sudo apt install gnome-tweaks
 
 # Intall Ibus-Unikey
 sudo add-apt-repository ppa:ubuntu-vn/ppa
@@ -31,6 +32,9 @@ ibus restart
 
 # Install Vim
 sudo apt-get install vim
+
+# Install Git
+sudo apt-get install git
 
 # Install Sublime text 3
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -78,10 +82,10 @@ sudo apt-get -y install john
 # Install Super Productivity - manage projects
 sudo snap install superproductivity
 
-# Install Wallch - change Wallpaper follow time
+# Install Wallch - change Wallpaper following real time
 sudo apt-get install wallch
 
-# Install Nixnote2 - Application is same as Microsoft One Note - Evernote on Linux  
+# Install Nixnote2 - Evernote's Desktop Application for Linux 
 sudo add-apt-repository ppa:nixnote/nixnote2-daily
 sudo apt-get install nixnote2 -y
 
