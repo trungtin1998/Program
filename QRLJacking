@@ -1,0 +1,5 @@
+cd ~/GIT
+git clone https://github.com/OWASP/QRLJacking.git
+cd QRLJacking/QRLJacker
+# Make sure this is python3.7
+pip3 install -r requirements.txt
