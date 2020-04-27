@@ -12,3 +12,6 @@ sudo apt-get -f install
 
 wget "https://launchpad.net/ubuntu/+archive/primary/+files/libgoo-canvas-perl_0.06-2ubuntu3_amd64.deb"
 sudo apt-get -f install
+
+sudo apt-get -y install libappindicator-dev
+sudo cpan -i Gtk2::AppIndicator
