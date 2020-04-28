@@ -1,0 +1,47 @@
+cd ~/Downloads
+
+# 1. Download and Unzip
+wget "https://www.xmind.net/xmind/downloads/xmind-8-update9-linux.zip"
+unzip xmind-8-update9-linux.zip
+
+# 2. Move
+sudo mv xmind /opt/
+sudo chmod a+x /opt/xmind/XMind\ amd64/configuration
+
+# 3. Sửa file config /opt/xmind/XMind_amd64/XMind.ini thành
+-configuration
+/opt/xmind/XMind_amd64/./configuration
+-data
+/opt/xmind/XMind_amd64/../workspace
+-startup
+/opt/xmind/XMind_amd64/../plugins/org.eclipse.equinox.launcher_1.3.200.v20160318-1642.jar
+--launcher.library
+/opt/xmind/XMind_amd64/../plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.400.v20160518-1444
+--launcher.defaultAction
+openFile
+--launcher.GTK_version
+2
+-eclipse.keyring
+@user.home/.xmind/secure_storage_linux
+-vmargs
+-Dfile.encoding=UTF-8
+-vm /usr/lib/jvm/java-8-openjdk-amd64/jre/bin # Đặc biệt quan trọng
+
+# 4. Tạo file xmind.desktop
+sudo vim /usr/share/applications/xmind.desktop
+
+[Desktop Entry]
+Comment=Create and share mind maps
+Exec=/opt/xmind/XMind_amd64/XMind  %F
+Name=XMind
+Terminal=false
+Type=Application
+Categories=Office
+Icon=/opt/xmind/xmind.jpg # Path tới icon app
+
+## Cấp quyền thực thi cho file này
+sudo chmod +x /usr/share/applications/xmind.desktop
+
+# 5. Tránh bị lỗi
+sudo update-alternatives --config java
+## và chọn tới dòng chứa java 8 làm mặc định
