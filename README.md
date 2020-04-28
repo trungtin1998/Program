@@ -1,2 +1,2 @@
 # Program
-A lot of program installed
+Installed Program
