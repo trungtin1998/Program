@@ -1,2 +1,1 @@
-# Program
-Installed Program
+# Bash scr
