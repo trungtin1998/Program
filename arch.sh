@@ -1,4 +1,9 @@
 # Install Arch Linux
+
+# Global variable
+$hostname = 'TF1T'
+
+# Update the system clock
 timedatectl set-ntp true
 pacman -Syyy
 
@@ -80,17 +85,17 @@ arch-chroot /mnt
 passwd
 
 # Essential packages
-pacman -S --nocofirm grub efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers reflector git bluez bluez-utils cups xdg-utils xdg-user-dirs pulseaudio-bluetooth
+pacman -S --noconfirm grub efibootmgr networkmanager network-manager-applet wireless_tools wpa_supplicant dialog os-prober mtools dosfstools base-devel linux-headers reflector git bluez bluez-utils cups xdg-utils xdg-user-dirs pulseaudio-bluetooth
 
 # Timezone and localization
 ln -sf /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 hwclock --systohc
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen && locale-gen
 echo 'LANG=en_US.UTF-8' > /etc/locale.conf
-echo "TF1T" > /etc/hostname
+echo '$hostname' > /etc/hostname
 vim /etc/hosts
-127.0.0.1\t localhost TF1T
-::1\t localhost TF1T
+echo "127.0.0.1\tlocalhost\t$hostname" > /etc/hosts
+echo "::1\tlocalhost\t$hostname" > /etc/hosts
 
 # Network
 systemctl enable NetworkManager
