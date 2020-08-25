@@ -14,7 +14,7 @@ timedatectl set-ntp true
 pacman -Syyy
 
 # Partition the disk
-gdisk /dev/nvme0n1
+gdisk $disk
 g
 
 # EFI partition
@@ -55,15 +55,15 @@ cryptsetup luksFormat -y -v $root_partition
 YES
 cryptsetup open $root_partition luks_root
 
-mkfs.vfat -n "EFI System Partition" /dev/nvme0n1p1
-mkfs.ext4 -L boot /dev/nvme0n1p2
+mkfs.vfat -n "EFI System Partition" $efi_partition
+mkfs.ext4 -L boot $boot_partition
 mkfs.ext4 -L root /dev/mapper/luks_root
 mount /dev/mapper/luks_root /mnt
 cd /mnt
 mkdir boot
-mount /dev/nvme0n1p2 boot
+mount $boot_partition boot
 mkdir boot/efi
-mount /dev/nvme0n1p1 boot/efi
+mount /$efi_partition boot/efi
 dd if=/dev/zero of=swap bs=1M count=4096
 mkswap swap
 swapon swap
@@ -125,20 +125,20 @@ passwd '$username'
 sed -i '/%wheel\sALL=(ALL)\sALL/s/^#\s//g' /etc/sudoers
 
 
-vim /etc/default/grub
+#vim /etc/default/grub
 # Set
-GRUB_CMDLINE_LINUX=”cryptdevice=/dev/nvme0n1p3:luks_root”
+#GRUB_CMDLINE_LINUX=”cryptdevice=/dev/nvme0n1p3:luks_root”
 
-vim /etc/mkinitcpio.conf
+#vim /etc/mkinitcpio.conf
 # In the HOOKS section, add encrypt after block as shown in the marked section of the screenshot below. Then save the file
 
 # Install GRUB
-mkinitcpio -p linux
-grub-install --boot-directory=/boot --efi-directory=/boot/efi /dev/nvme0n1p2
-grub-mkconfig -o /boot/grub/grub.cfg
-grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
+#mkinitcpio -p linux
+#grub-install --boot-directory=/boot --efi-directory=/boot/efi /dev/nvme0n1p2
+#grub-mkconfig -o /boot/grub/grub.cfg
+#grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
 # Exit chroot
-exit
+#exit
 
 #reboot
  
