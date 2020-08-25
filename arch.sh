@@ -1,7 +1,13 @@
-# Install Arch Linux
+# Bisically script installing Arch Linux and encrypt root partion by using LUKS
 
 # Global variable
-$hostname = 'TF1T'
+disk='/dev/nvme0n1'
+efi_partition='${disk}p1'
+boot_partition="${disk}p2"
+root_partition="${disk}p3"
+hostname='TF1T'
+username='trungtin'
+fullname='Trung Tin'
 
 # Update the system clock
 timedatectl set-ntp true
@@ -13,28 +19,30 @@ g
 
 # EFI partition
 n
-1
-[Enter]
-[Enter]
-+200M
+
+
++5012M
 # Choose EFI Sytem
 # 1: EF00
 # 2: Type follow
-t
-1
-1
+EF00
+
+
 
 # boot partition
 n
-[Enter]
-[Enter]
-+500M
+
+
++1G
 # 8300
 # root partition
+
+
+
 n
-[Enter]
-[Enter]
-[Enter]
+
+
+
 w
 
 
@@ -43,9 +51,9 @@ modprobe dm-crypt
 modprobe dm-mod
 
 # Encrypt root partition
-cryptsetup luksFormat -v -s 512 -h sha512 /dev/nvme0n1p2
+cryptsetup luksFormat -y -v $root_partition
 YES
-cryptsetup open /dev/nvme0n1p2 luks_root
+cryptsetup open $root_partition luks_root
 
 mkfs.vfat -n "EFI System Partition" /dev/nvme0n1p1
 mkfs.ext4 -L boot /dev/nvme0n1p2
@@ -56,7 +64,7 @@ mkdir boot
 mount /dev/nvme0n1p2 boot
 mkdir boot/efi
 mount /dev/nvme0n1p1 boot/efi
-dd if=/dev/zero of=swap bs=1M count=1024
+dd if=/dev/zero of=swap bs=1M count=4096
 mkswap swap
 swapon swap
 chmod 0600 swap
@@ -82,6 +90,7 @@ genfstab -U /mnt > /mnt/etc/fstab
 
 # newly installed Arch Linux
 arch-chroot /mnt
+echo 'Enter Passwd ROOT: '
 passwd
 
 # Essential packages
@@ -107,11 +116,9 @@ sed -i 's/^#Color/Color/g;/#\[multilib\]/,/#Include/ s/^#//g' /etc/pacman.conf
 pacman -Syy
 
 # Users
-echo "ROOT PASSWORD"
-passwd
-useradd -m -G wheel -s /bin/zsh -c "Trung Tin" "trungtin"
-echo "USER PASSWORD (trungtin)"
-passwd "trungtin"
+useradd -m -G wheel -s /bin/zsh -c '$fulname' '$username'
+echo "USER PASSWORD $username"
+passwd '$username'
 
 
 # Allow users in group wheel to use sudo
@@ -120,7 +127,7 @@ sed -i '/%wheel\sALL=(ALL)\sALL/s/^#\s//g' /etc/sudoers
 
 vim /etc/default/grub
 # Set
-GRUB_CMDLINE_LINUX=”cryptdevice=/dev/sda3:luks_root”
+GRUB_CMDLINE_LINUX=”cryptdevice=/dev/nvme0n1p3:luks_root”
 
 vim /etc/mkinitcpio.conf
 # In the HOOKS section, add encrypt after block as shown in the marked section of the screenshot below. Then save the file
@@ -133,20 +140,20 @@ grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
 # Exit chroot
 exit
 
-reboot
+#reboot
  
-nmtui
+#nmtui
 # Graphic card drivers
-sudo pacman -S --noconfirm nvidia nividia-utils xf86-video-intl xorg sddm plasma kde-applications packagekit-qt5 firefox libreoffice
+#sudo pacman -S --noconfirm nvidia nvidia-utils xf86-video-intel xorg sddm plasma kde-applications packagekit-qt5 firefox libreoffice
 
 # Install Yay
-git clone https://aur.archlinux.org/yay.git
-cd yay/
-makepkg -si PKGBUILD
+#git clone https://aur.archlinux.org/yay.git
+#cd yay/
+#makepkg -si PKGBUILD
 # Install Fonts
-yay -S ttf-ms-fonts
+#yay -S ttf-ms-fonts
 # Install Timeshift
-yay -S timeshift
+#yay -S timeshift
 # Enable Trim timer
-sudo systemctl enable fstrim.timer
+#sudo systemctl enable fstrim.timer
 
