@@ -78,6 +78,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
 
 ### Change lockscreen: 
 ###### sudo gedit /usr/share/gnome-shell/theme/ubuntu.css
+###### Lockscreen image: https://wallpapercave.com/wp/wp2019629.jpg
 
 # Install Wireshark
 sudo apt-get install wireshark
