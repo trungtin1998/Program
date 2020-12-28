@@ -80,6 +80,22 @@ gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
 ###### sudo gedit /usr/share/gnome-shell/theme/ubuntu.css
 ###### Lockscreen image: https://wallpapercave.com/wp/wp2019629.jpg
 
+# Yubikey-manager
+sudo apt-add-repository ppa:yubico/stable
+sudo apt update
+sudo apt install yubikey-manager-qt
+
+# Setup Yubikey
+sudo apt-get install libpam-u2f
+mkdir ~/.config/Yubico
+pamu2fcfg > ~/.config/Yubico/u2f_keys ### When your device begins flashing, touch the metal contact to confirm the association
+sudo vim /etc/pam.d/sudo
+# Add the line below after the “@include common-auth” line. 
+### auth       required   pam_u2f.so
+sudo vim /etc/pam.d/login
+# Add the line below after the “@include common-auth” line.
+### auth       required   pam_u2f.so
+
 # Install Wireshark
 sudo apt-get install wireshark
 sudo groupadd wireshark
@@ -108,3 +124,4 @@ sudo apt-get install nixnote2 -y
 
 # Install Valgrind - Tool check memory leak
 sudo apt-get install valgrind
+
