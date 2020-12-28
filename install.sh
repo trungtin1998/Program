@@ -8,6 +8,7 @@ sudo apt-get update
 sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt update
 sudo apt install nvidia-driver-430 nvidia-setting
+sudo prime-select intel
 
 # Change hostname
 sudo hostnamectl set-hostname T1FT
