@@ -20,7 +20,7 @@ sudo apt-get install gnome-tweak-tool
 sudo apt-get install python python3
 
 # Pip
-sudo apt-get install python-pip python-pip3
+sudo apt-get install python-pip python3-pip
 
 # Software used to use nslookup and a lot of services network
 sudo apt-get install net-tools
