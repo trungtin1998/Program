@@ -71,6 +71,14 @@ sudo systemctl enable tlp
 sudo systemctl start tlp
 sudo systemctl enable tlp-sleep
 
+### Disable Dock
+gsettings set org.gnome.shell.extensions.dash-to-dock autohide false
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
+
+### Change lockscreen: 
+###### sudo gedit /usr/share/gnome-shell/theme/ubuntu.css
+
 # Install Wireshark
 sudo apt-get install wireshark
 sudo groupadd wireshark
