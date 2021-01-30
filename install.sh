@@ -14,7 +14,6 @@ sudo prime-select intel
 sudo hostnamectl set-hostname T1FT
 
 # Install GNOME Tweak - Change background and lockscreen
-sudo add-apt-repository universe
 sudo apt-get install gnome-tweak-tool
 
 # Python
