@@ -91,7 +91,7 @@ pamu2fcfg > ~/.config/Yubico/u2f_keys ### When your device begins flashing, touc
 sudo vim /etc/pam.d/sudo
 # Add the line below after the “@include common-auth” line. 
 ### auth       required   pam_u2f.so
-sudo vim /etc/pam.d/login
+sudo vim /etc/pam.d/gdm-password
 # Add the line below after the “@include common-auth” line.
 ### auth       required   pam_u2f.so
 
